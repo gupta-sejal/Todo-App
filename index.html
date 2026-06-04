@@ -369,29 +369,6 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
 .cal-filter-btn.active { background: var(--coral); color: white; border-color: var(--coral); }
 .cal-doodle-thumb { width: 18px; height: 18px; border-radius: 3px; object-fit: cover; display: block; margin: 1px auto 0; }
 
-/* ACHIEVEMENTS */
-.ach-list { display: flex; flex-direction: column; gap: 6px; }
-.ach-card {
-  display: flex; align-items: center; gap: 8px;
-  padding: 6px 8px;
-  background: linear-gradient(135deg, var(--surface2), var(--surface));
-  border-radius: 8px;
-  border: 1px solid var(--border);
-}
-.ach-icon { font-size: 20px; }
-.ach-title { font-size: 11px; font-weight: 600; color: var(--text); }
-.ach-desc { font-size: 10px; color: var(--text2); }
-
-/* GARDEN PREVIEW */
-.garden-mini-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
-.garden-mini-plot {
-  aspect-ratio: 1;
-  background: var(--surface2);
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px;
-}
 
 /* ADD TASK CARD */
 .add-task-card {
@@ -676,36 +653,6 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
 .cal-task-list { margin-top: 16px; background: var(--surface); border-radius: var(--radius); padding: 16px; border: 1px solid var(--border); }
 .cal-task-title { font-family: 'Playfair Display', serif; font-size: 16px; margin-bottom: 10px; }
 
-/* GARDEN */
-.garden-container { max-width: 560px; margin: 0 auto; }
-.garden-title { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin-bottom: 4px; }
-.garden-sub { font-family: 'Caveat', cursive; font-size: 16px; color: var(--text2); margin-bottom: 16px; }
-.garden-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
-.garden-plot {
-  aspect-ratio: 1;
-  background: var(--surface2);
-  border-radius: 12px;
-  border: 2px solid var(--border);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  font-size: 32px;
-  cursor: pointer;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.garden-plot:hover { transform: scale(1.05); box-shadow: var(--shadow-hover); }
-.garden-plot.sparkle { animation: sparkle 0.6s ease; }
-.garden-plot .plot-label { font-size: 10px; color: var(--text2); position: absolute; bottom: 4px; font-family: 'Caveat', cursive; }
-.garden-story {
-  background: var(--surface);
-  border-radius: var(--radius);
-  padding: 16px;
-  border: 1px solid var(--border);
-  font-family: 'Caveat', cursive;
-  font-size: 17px;
-  color: var(--text2);
-  text-align: center;
-}
 
 /* QUESTS */
 .quests-grid { display: flex; flex-direction: column; gap: 14px; }
@@ -1033,7 +980,6 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
       <button class="tab-btn active" onclick="setView('tasks')" data-view="tasks">✏️ Tasks</button>
       <button class="tab-btn" onclick="setView('kanban')" data-view="kanban">📋 Kanban</button>
       <button class="tab-btn" onclick="setView('calendar')" data-view="calendar">📅 Calendar</button>
-      <button class="tab-btn" onclick="setView('garden')" data-view="garden">🌱 Garden</button>
       <button class="tab-btn" onclick="setView('journal')" data-view="journal">📓 Journal</button>
     </div>
     <div class="center-content">
@@ -1098,15 +1044,6 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
         </div>
       </div>
 
-      <!-- GARDEN VIEW -->
-      <div id="view-garden" class="view-section">
-        <div class="garden-container">
-          <div class="garden-title">🌿 My Garden</div>
-          <div class="garden-sub caveat">Every task you complete helps your garden grow</div>
-          <div class="garden-grid" id="gardenGrid"></div>
-          <div class="garden-story" id="gardenStory"></div>
-        </div>
-      </div>
 
       <!-- JOURNAL VIEW -->
       <div id="view-journal" class="view-section">
@@ -1620,7 +1557,6 @@ function renderAll() {
   if (currentView === 'tasks')    renderTasks();
   if (currentView === 'kanban')   renderKanban();
   if (currentView === 'calendar') renderCalendar();
-  if (currentView === 'garden')   renderGarden();
   if (currentView === 'journal')  renderJournal();
   renderRightPanel();
 }
@@ -1860,35 +1796,6 @@ function setCalFilter(f, btn) {
   renderCalendar();
 }
 
-// -- GARDEN VIEW --
-function renderGarden() {
-  const done = state.totalDone;
-  const thresholds = [
-    { min: 200, emoji: '🌳', label: 'Tree' },
-    { min: 50,  emoji: '🌸', label: 'Flower' },
-    { min: 10,  emoji: '🌿', label: 'Sprout' },
-    { min: 1,   emoji: '🌱', label: 'Seed' },
-    { min: 0,   emoji: '🪨', label: 'Soil' },
-  ];
-
-  document.getElementById('gardenGrid').innerHTML = Array.from({length:12}, (_, i) => {
-    const share = Math.floor(done * (i+1) / 12);
-    let plant = thresholds[thresholds.length - 1];
-    for (const t of thresholds) { if (share >= t.min) { plant = t; break; } }
-    return `<div class="garden-plot"><span style="font-size:32px">${plant.emoji}</span><span class="plot-label">${plant.label}</span></div>`;
-  }).join('');
-
-  let story;
-  if (done === 0) story = 'Your garden is waiting... complete your first task to plant a seed! 🌱';
-  else if (done < 5) story = `Your garden is just beginning! ${done} task${done>1?'s':''} completed — tiny seeds are sprouting. 🌱`;
-  else if (done < 15) story = `Lovely progress! ${done} tasks done — lush sprouts are emerging everywhere! 🌿`;
-  else if (done < 40) story = `Wonderful! ${done} tasks complete — beautiful flowers are blooming in your garden! 🌸`;
-  else if (done < 100) story = `Magnificent! ${done} tasks done — majestic trees are growing tall and proud! 🌳`;
-  else story = `Legendary! ${done} tasks complete — your garden is a breathtaking paradise! 🏡✨`;
-
-  document.getElementById('gardenStory').textContent = story;
-}
-
 // -- QUESTS VIEW --
 function renderQuests() {
   document.getElementById('questsGrid').innerHTML = state.quests.map(q => {
@@ -1938,25 +1845,6 @@ function renderRightPanel() {
     </div>`
   ).join('');
 
-  // (quests removed)
-
-  // Achievements
-  const earned = ACHIEVEMENTS_CONFIG.filter(a => state.achievements.includes(a.id)).slice(-3);
-  const achHtml = earned.length
-    ? earned.map(a => `<div class="ach-card"><span class="ach-icon">${a.emoji}</span><div><div class="ach-title">${a.title}</div><div class="ach-desc">${a.desc}</div></div></div>`).join('')
-    : `<div style="color:var(--text2);font-family:'Caveat',cursive;font-size:15px;padding:4px 0">Complete tasks to earn achievements! ⭐</div>`;
-
-  // Garden mini
-  const done = state.totalDone;
-  const miniThresh = [
-    {min:200,e:'🌳'},{min:50,e:'🌸'},{min:10,e:'🌿'},{min:1,e:'🌱'},{min:0,e:'🪨'}
-  ];
-  const miniPlots = Array.from({length:6}, (_,i) => {
-    const share = Math.floor(done * (i+1) / 12);
-    let p = miniThresh[miniThresh.length-1];
-    for (const t of miniThresh) { if(share>=t.min){p=t;break;} }
-    return `<div class="garden-mini-plot">${p.e}</div>`;
-  }).join('');
 
   panel.innerHTML = `
     <div class="widget">
@@ -1989,16 +1877,6 @@ function renderRightPanel() {
       <div class="habit-list">${habitsHtml}</div>
     </div>
 
-    <div class="widget">
-      <div class="widget-title">🏆 Achievements</div>
-      <div class="ach-list">${achHtml}</div>
-    </div>
-
-    <div class="widget">
-      <div class="widget-title">🌿 Garden Preview</div>
-      <div class="garden-mini-grid">${miniPlots}</div>
-      <div style="font-family:'Caveat',cursive;font-size:13px;color:var(--text2);margin-top:8px;text-align:center">${done} tasks completed</div>
-    </div>
   `;
 }
 
