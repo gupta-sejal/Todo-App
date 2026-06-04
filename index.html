@@ -223,10 +223,10 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
   background: var(--bg2);
   border-left: 2px solid var(--border);
   overflow-y: auto;
-  padding: 16px 12px;
+  padding: 12px 10px 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
   scrollbar-width: thin;
   scrollbar-color: var(--border) transparent;
 }
@@ -234,7 +234,7 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 14px;
+  padding: 10px 12px 12px;
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
@@ -248,17 +248,17 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
   opacity: 0.6;
 }
 .widget-title {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
   color: var(--text2);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 /* USER CARD */
-.user-avatar { font-size: 36px; margin-bottom: 6px; }
-.user-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; }
+.user-avatar { font-size: 28px; margin-bottom: 4px; }
+.user-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; }
 .level-badge {
   display: inline-flex; align-items: center; gap: 4px;
   background: var(--yellow); color: #5A4500;
@@ -271,22 +271,22 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
 .xp-label { font-size: 11px; color: var(--text2); }
 
 /* STREAK */
-.streak-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--coral); }
-.streak-dots { display: flex; gap: 6px; margin-top: 8px; }
+.streak-num { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--coral); }
+.streak-dots { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
 .streak-dot {
-  width: 24px; height: 24px; border-radius: 50%;
+  width: 20px; height: 20px; border-radius: 50%;
   background: var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 10px; color: var(--text2);
+  font-size: 9px; color: var(--text2);
   font-weight: 600;
 }
 .streak-dot.filled { background: var(--coral); color: white; }
 
 /* FOCUS STATS */
-.focus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.focus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
 .focus-stat { text-align: center; }
-.focus-stat-num { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--blue); }
-.focus-stat-label { font-size: 10px; color: var(--text2); }
+.focus-stat-num { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--blue); }
+.focus-stat-label { font-size: 9px; color: var(--text2); }
 
 /* HABITS */
 .habit-list { display: flex; flex-direction: column; gap: 6px; }
@@ -313,11 +313,61 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
 .habit-name { font-size: 12px; color: var(--text); }
 .habit-xp { font-size: 10px; color: var(--text2); margin-left: auto; }
 
-/* QUEST MINI */
-.quest-mini { margin-bottom: 8px; }
-.quest-mini-title { font-size: 11px; color: var(--text); margin-bottom: 3px; font-weight: 500; }
-.quest-mini-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
-.quest-mini-fill { height: 100%; background: var(--blue); border-radius: 2px; transition: width 0.5s; }
+/* ADD TASK DIVIDER */
+.add-task-divider {
+  display: flex; align-items: center; gap: 10px;
+  margin: 10px 0 8px; color: var(--text2);
+  font-family: 'Caveat', cursive; font-size: 13px;
+}
+.add-task-divider::before, .add-task-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+
+/* JOURNAL */
+.journal-header { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+.journal-date-label { font-family: 'Caveat', cursive; font-size: 16px; color: var(--text2); margin-bottom: 14px; }
+.journal-write-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 20px; box-shadow: var(--shadow); }
+.journal-textarea { width: 100%; min-height: 120px; border: none; background: transparent; font-family: 'Caveat', cursive; font-size: 18px; color: var(--text); resize: none; outline: none; line-height: 28px; background-image: repeating-linear-gradient(transparent, transparent 27px, var(--border) 27px, var(--border) 28px); background-position: 0 8px; }
+.journal-actions { display: flex; gap: 8px; margin-top: 12px; }
+.journal-btn { padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); font-family: 'Caveat', cursive; font-size: 16px; cursor: pointer; color: var(--text); transition: all 0.2s; }
+.journal-btn.primary { background: var(--coral); color: white; border-color: var(--coral); box-shadow: 0 3px 0 #C0582A; }
+.journal-btn:hover { transform: translateY(-1px); }
+.journal-entry-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; box-shadow: var(--shadow); }
+.journal-entry-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+.journal-entry-date { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.journal-entry-preview { font-family: 'Caveat', cursive; font-size: 15px; color: var(--text2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.journal-entry-row { display: flex; align-items: center; gap: 10px; }
+.journal-entry-doodle { width: 44px; height: 44px; border-radius: 6px; border: 1px solid var(--border); object-fit: cover; flex-shrink: 0; }
+.journal-entry-expanded { display: none; margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
+.journal-entry-card.expanded .journal-entry-expanded { display: block; }
+.journal-entry-full-text { font-family: 'Caveat', cursive; font-size: 17px; color: var(--text); margin-bottom: 8px; white-space: pre-wrap; }
+.journal-entry-full-doodle { max-width: 100%; border-radius: 8px; border: 1px solid var(--border); }
+
+/* DOODLE OVERLAY */
+.doodle-overlay { position: fixed; inset: 0; z-index: 300; background: #FFFDF8; display: none; flex-direction: column; }
+[data-theme="dark"] .doodle-overlay { background: #1A1714; }
+.doodle-overlay.open { display: flex; }
+.doodle-topbar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 16px; background: var(--bg2); border-bottom: 2px solid var(--border); flex-shrink: 0; }
+.doodle-title { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--text); flex-shrink: 0; }
+.doodle-tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; }
+.color-swatches { display: flex; gap: 4px; }
+.color-swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid transparent; cursor: pointer; transition: all 0.15s; flex-shrink: 0; }
+.color-swatch:hover { transform: scale(1.2); }
+.color-swatch.active { border-color: var(--text); transform: scale(1.15); box-shadow: 0 0 0 2px var(--bg); }
+.tool-btn { padding: 5px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 13px; transition: all 0.2s; }
+.tool-btn.active { background: var(--yellow); border-color: #D4A800; }
+.doodle-action-btn { padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-size: 12px; color: var(--text); transition: all 0.2s; font-weight: 500; }
+.doodle-action-btn:hover { background: var(--surface2); }
+.doodle-action-btn.save { background: var(--green); color: white; border-color: var(--green); }
+.doodle-canvas-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 20px; overflow: hidden; background: var(--bg); }
+#doodleCanvas { background: white; border-radius: 12px; border: 2px solid var(--border); box-shadow: var(--shadow-hover); cursor: crosshair; touch-action: none; }
+
+/* CALENDAR FILTER TABS */
+.cal-filter-tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.cal-filter-btn { padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 500; color: var(--text2); transition: all 0.2s; }
+.cal-filter-btn:hover { background: var(--surface2); }
+.cal-filter-btn.active { background: var(--coral); color: white; border-color: var(--coral); }
+.cal-doodle-thumb { width: 18px; height: 18px; border-radius: 3px; object-fit: cover; display: block; margin: 1px auto 0; }
 
 /* ACHIEVEMENTS */
 .ach-list { display: flex; flex-direction: column; gap: 6px; }
@@ -977,13 +1027,16 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
       <button class="tab-btn" onclick="setView('kanban')" data-view="kanban">📋 Kanban</button>
       <button class="tab-btn" onclick="setView('calendar')" data-view="calendar">📅 Calendar</button>
       <button class="tab-btn" onclick="setView('garden')" data-view="garden">🌱 Garden</button>
-      <button class="tab-btn" onclick="setView('quests')" data-view="quests">⚔️ Quests</button>
+      <button class="tab-btn" onclick="setView('journal')" data-view="journal">📓 Journal</button>
     </div>
     <div class="center-content">
       <!-- TASKS VIEW -->
       <div id="view-tasks" class="view-section active">
-        <div class="add-task-card notebook-lines">
-          <input type="text" class="task-input" id="taskInput" placeholder="Write a new task here..." onkeydown="if(event.key==='Enter')addTaskFromForm()">
+        <div class="add-task-card">
+          <div class="notebook-lines" style="padding:4px 2px 6px">
+            <input type="text" class="task-input" id="taskInput" placeholder="Write a new task here..." onkeydown="if(event.key==='Enter')addTaskFromForm()">
+          </div>
+          <div class="add-task-divider"><span>add details</span></div>
           <div class="task-form-row">
             <select class="form-select" id="taskCat">
               <option value="study">📚 Study</option>
@@ -1019,6 +1072,12 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
       <!-- CALENDAR VIEW -->
       <div id="view-calendar" class="view-section">
         <div class="calendar-wrap">
+          <div class="cal-filter-tabs">
+            <button class="cal-filter-btn active" data-filter="tasks" onclick="setCalFilter('tasks',this)">📋 Tasks</button>
+            <button class="cal-filter-btn" data-filter="mood" onclick="setCalFilter('mood',this)">😊 Mood</button>
+            <button class="cal-filter-btn" data-filter="journal" onclick="setCalFilter('journal',this)">📓 Journal</button>
+            <button class="cal-filter-btn" data-filter="doodle" onclick="setCalFilter('doodle',this)">🎨 Doodles</button>
+          </div>
           <div class="cal-nav">
             <button class="cal-nav-btn" onclick="calPrev()">‹</button>
             <div class="cal-month-title" id="calTitle"></div>
@@ -1042,10 +1101,9 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
         </div>
       </div>
 
-      <!-- QUESTS VIEW -->
-      <div id="view-quests" class="view-section">
-        <h2 class="playfair" style="margin-bottom:16px; font-size:24px;">⚔️ Weekly Quests</h2>
-        <div class="quests-grid" id="questsGrid"></div>
+      <!-- JOURNAL VIEW -->
+      <div id="view-journal" class="view-section">
+        <div id="journalContainer"></div>
       </div>
     </div>
   </main>
@@ -1115,12 +1173,13 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
       <div class="timer-center">
         <div class="timer-display" id="timerDisplay">25:00</div>
         <div class="timer-phase" id="timerPhaseLabel">FOCUS</div>
-        <div class="session-dots" id="sessionDots">
-          <div class="session-dot"></div>
-          <div class="session-dot"></div>
-          <div class="session-dot"></div>
-          <div class="session-dot"></div>
-        </div>
+        <div style="text-align:center;margin-top:6px">
+            <label style="font-family:'Caveat',cursive;font-size:13px;color:#8A6840">Sessions: </label>
+            <input type="number" id="sessionsGoalInput" min="1" max="8" value="4"
+              style="width:38px;text-align:center;border:1px solid rgba(200,168,107,0.5);border-radius:6px;background:transparent;color:#5A3800;font-family:'Caveat',cursive;font-size:14px;padding:2px 4px;outline:none"
+              onchange="updateSessionsGoal(parseInt(this.value)||4)">
+          </div>
+          <div class="session-dots" id="sessionDots"></div>
       </div>
     </div>
 
@@ -1138,6 +1197,26 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
     <div class="summary-row">Focus Streak: <span id="sumStreak"></span></div>
     <textarea class="reflection-input" id="reflectionInput" placeholder="What did you accomplish? Reflect here..."></textarea>
     <button class="archive-btn" onclick="archiveSession()">📖 Archive to Scrapbook</button>
+  </div>
+</div>
+
+<!-- DOODLE OVERLAY -->
+<div class="doodle-overlay" id="doodleOverlay">
+  <div class="doodle-topbar">
+    <div class="doodle-title">🎨 <span id="doodleTitleLabel">Draw something...</span></div>
+    <div class="doodle-tools">
+      <div class="color-swatches" id="colorSwatches"></div>
+      <button class="tool-btn active" id="toolPencil" onclick="setDoodleTool('pencil')" title="Pencil">✏️ Pencil</button>
+      <button class="tool-btn" id="toolEraser" onclick="setDoodleTool('eraser')" title="Eraser">⬜ Eraser</button>
+      <input type="range" id="brushSize" min="2" max="28" value="4" style="width:70px;cursor:pointer" title="Brush size">
+      <button class="doodle-action-btn" onclick="undoDoodle()" title="Undo">↩ Undo</button>
+      <button class="doodle-action-btn" onclick="clearDoodle()" title="Clear">🗑 Clear</button>
+      <button class="doodle-action-btn save" onclick="saveDoodle()">💾 Save</button>
+      <button class="doodle-action-btn" onclick="closeDoodle()">✕ Close</button>
+    </div>
+  </div>
+  <div class="doodle-canvas-wrap">
+    <canvas id="doodleCanvas"></canvas>
   </div>
 </div>
 
@@ -1224,7 +1303,22 @@ let currentView = 'tasks';
 let selectedCat = 'all';
 let calYear, calMonth;
 let calSelectedDay = null;
+let calFilter = 'tasks';
 let dragId = null;
+
+// Doodle state
+let doodleDate = null;
+let doodleTool = 'pencil';
+let doodleColor = '#2A2A2A';
+let doodleBrushSize = 4;
+let doodleIsDrawing = false;
+let doodleHistory = [];
+let doodleCtxRef = null;
+let doodleCanvasRef = null;
+let doodleLastX = 0, doodleLastY = 0;
+
+// Sessions goal
+let sessionsGoal = 4;
 
 // Audio
 let audioCtx = null;
@@ -1272,8 +1366,19 @@ function loadState() {
       if (!state.journal) state.journal = {};
       if (!state.achievements) state.achievements = [];
       if (!state.quests) state.quests = defaultQuests();
+      if (!state.moods) state.moods = {};
       if (state.streak === undefined) state.streak = 1;
       if (!state.lastActive) state.lastActive = todayStr();
+      // Migrate old journal entries to new format
+      if (state.journal) {
+        for (const d of Object.keys(state.journal)) {
+          if (typeof state.journal[d] === 'string') {
+            state.journal[d] = { text: state.journal[d], doodle: '' };
+          } else if (!state.journal[d].doodle) {
+            state.journal[d].doodle = '';
+          }
+        }
+      }
     } else {
       initFreshState();
     }
@@ -1476,9 +1581,11 @@ function toggleHabit(id) {
 function setMood(mood) {
   state.mood = mood;
   state.moodDate = todayStr();
+  if (!state.moods) state.moods = {};
+  const moodEmojis = { happy: '😊', neutral: '😐', tired: '😴', stressed: '😓' };
+  state.moods[todayStr()] = moodEmojis[mood] || '😊';
   saveState();
   renderSidebar();
-  const moodEmojis = { happy: '😊', neutral: '😐', tired: '😴', stressed: '😓' };
   showToast('Mood saved!', moodEmojis[mood] || '✨');
 }
 
@@ -1507,7 +1614,7 @@ function renderAll() {
   if (currentView === 'kanban')   renderKanban();
   if (currentView === 'calendar') renderCalendar();
   if (currentView === 'garden')   renderGarden();
-  if (currentView === 'quests')   renderQuests();
+  if (currentView === 'journal')  renderJournal();
   renderRightPanel();
 }
 
@@ -1674,11 +1781,25 @@ function renderCalendar() {
     const dateStr = calYear + '-' + String(calMonth+1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
     const isToday = dateStr === todayFull;
     const isSel = calSelectedDay === dateStr;
-    const dayTasks = state.tasks.filter(t => t.due === dateStr);
-    const dots = dayTasks.slice(0,3).map(t => `<div class="cal-dot ${t.priority}"></div>`).join('');
+    const entry = state.journal ? state.journal[dateStr] : null;
+    let indicator = '';
+
+    if (calFilter === 'tasks') {
+      const dayTasks = state.tasks.filter(t => t.due === dateStr);
+      const dots = dayTasks.slice(0,3).map(t => `<div class="cal-dot ${t.priority}"></div>`).join('');
+      indicator = dots ? `<div class="cal-dots">${dots}</div>` : '';
+    } else if (calFilter === 'mood') {
+      const moods = state.moods || {};
+      const m = moods[dateStr];
+      indicator = m ? `<div style="font-size:11px">${m}</div>` : '';
+    } else if (calFilter === 'journal') {
+      indicator = entry && entry.text ? `<div style="font-size:10px">📓</div>` : '';
+    } else if (calFilter === 'doodle') {
+      indicator = entry && entry.doodle ? `<img class="cal-doodle-thumb" src="${entry.doodle}" alt="">` : '';
+    }
+
     html += `<div class="cal-day${isToday?' today':''}${isSel?' selected':''}" onclick="calSelectDay('${dateStr}')">
-      ${d}
-      ${dots ? `<div class="cal-dots">${dots}</div>` : ''}
+      ${d}${indicator}
     </div>`;
   }
 
@@ -1709,7 +1830,19 @@ function renderCalendar() {
 
 function calPrev() { calMonth--; if (calMonth < 0) { calMonth = 11; calYear--; } renderCalendar(); }
 function calNext() { calMonth++; if (calMonth > 11) { calMonth = 0; calYear++; } renderCalendar(); }
-function calSelectDay(d) { calSelectedDay = calSelectedDay === d ? null : d; renderCalendar(); }
+function calSelectDay(d) {
+  if (calFilter === 'doodle') { openDoodleForDate(d); return; }
+  if (calFilter === 'journal') { setView('journal'); return; }
+  calSelectedDay = calSelectedDay === d ? null : d;
+  renderCalendar();
+}
+function setCalFilter(f, btn) {
+  calFilter = f;
+  document.querySelectorAll('.cal-filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  calSelectedDay = null;
+  renderCalendar();
+}
 
 // -- GARDEN VIEW --
 function renderGarden() {
@@ -1789,14 +1922,7 @@ function renderRightPanel() {
     </div>`
   ).join('');
 
-  // Quest minis
-  const questMinis = state.quests.map(q => {
-    const pct = Math.min(100, Math.round((q.progress/q.target)*100));
-    return `<div class="quest-mini">
-      <div class="quest-mini-title">${escHtml(q.title)}</div>
-      <div class="quest-mini-bar"><div class="quest-mini-fill" style="width:${pct}%"></div></div>
-    </div>`;
-  }).join('');
+  // (quests removed)
 
   // Achievements
   const earned = ACHIEVEMENTS_CONFIG.filter(a => state.achievements.includes(a.id)).slice(-3);
@@ -1845,11 +1971,6 @@ function renderRightPanel() {
     <div class="widget">
       <div class="widget-title">Today's Habits</div>
       <div class="habit-list">${habitsHtml}</div>
-    </div>
-
-    <div class="widget">
-      <div class="widget-title">⚔️ Quest Progress</div>
-      ${questMinis}
     </div>
 
     <div class="widget">
@@ -1970,8 +2091,10 @@ function resetPomo() {
   timerPhase = 'focus';
   timerRemaining = focusDuration * 60;
   timerTotal = timerRemaining;
+  sessionsToday = 0;
   document.getElementById('timerStartBtn').textContent = '▶ Begin Session';
   updateTimerDisplay();
+  renderSessionDots();
   document.getElementById('sessionSummary').classList.remove('show');
 }
 
@@ -2006,9 +2129,7 @@ function completeSession() {
   setTimeout(() => btn.classList.remove('ring-pulse'), 2000);
 
   // Update session dots
-  const dots = document.querySelectorAll('.session-dot');
-  const idx = Math.min(sessionsToday - 1, 3);
-  if (dots[idx]) dots[idx].classList.add('done');
+  renderSessionDots();
 
   // Switch to break
   timerPhase = 'break';
@@ -2023,9 +2144,12 @@ function completeSession() {
 
 function archiveSession() {
   const today = todayStr();
-  if (!state.journal[today]) state.journal[today] = {};
-  state.journal[today].goal = document.getElementById('focusGoalInput').value.trim();
-  state.journal[today].reflection = document.getElementById('reflectionInput').value.trim();
+  if (!state.journal[today]) state.journal[today] = { text: '', doodle: '' };
+  const reflection = document.getElementById('reflectionInput').value.trim();
+  const goal = document.getElementById('focusGoalInput').value.trim();
+  const existing = state.journal[today].text || '';
+  const newEntry = (existing ? existing + '\n\n' : '') + (goal ? `Goal: ${goal}\n` : '') + (reflection ? `Reflection: ${reflection}` : '');
+  state.journal[today].text = newEntry.trim();
   saveState();
   document.getElementById('sessionSummary').classList.remove('show');
   document.getElementById('reflectionInput').value = '';
@@ -2190,6 +2314,190 @@ function spawnConfetti() {
   }
 }
 
+// ==================== SESSIONS GOAL ====================
+function updateSessionsGoal(n) {
+  sessionsGoal = Math.max(1, Math.min(8, n));
+  renderSessionDots();
+}
+
+function renderSessionDots() {
+  const container = document.getElementById('sessionDots');
+  if (!container) return;
+  container.innerHTML = Array.from({length: sessionsGoal}, (_, i) =>
+    `<div class="session-dot${i < sessionsToday ? ' done' : ''}"></div>`
+  ).join('');
+}
+
+// ==================== JOURNAL ====================
+function renderJournal() {
+  const container = document.getElementById('journalContainer');
+  if (!container) return;
+  const today = todayStr();
+  const todayEntry = (state.journal || {})[today] || { text: '', doodle: '' };
+  const entries = Object.entries(state.journal || {})
+    .sort((a, b) => b[0].localeCompare(a[0]))
+    .filter(([d]) => d !== today);
+
+  container.innerHTML = `
+    <div class="journal-header">📓 My Journal</div>
+    <div class="journal-date-label">${new Date().toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric', year:'numeric'})}</div>
+    <div class="journal-write-card">
+      <div class="notebook-lines" style="padding:4px 2px 6px">
+        <textarea class="journal-textarea" id="journalTextarea" placeholder="Write about your day, thoughts, reflections...">${escHtml(todayEntry.text || '')}</textarea>
+      </div>
+      <div class="journal-actions">
+        <button class="journal-btn" onclick="openDoodleForDate('${today}')">🎨 Add Doodle</button>
+        <button class="journal-btn primary" onclick="saveJournalEntry('${today}')">Save Entry</button>
+      </div>
+      ${todayEntry.doodle ? `<img src="${todayEntry.doodle}" style="max-width:100%;border-radius:8px;border:1px solid var(--border);margin-top:10px" alt="Today's doodle">` : ''}
+    </div>
+    ${entries.length > 0
+      ? `<div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;margin-bottom:10px;color:var(--text2)">Past Entries</div>
+         ${entries.map(([date, entry]) => {
+           const label = new Date(date + 'T12:00:00').toLocaleDateString('en-US', {weekday:'short', month:'long', day:'numeric'});
+           const preview = (entry.text || '').slice(0, 90) || '(no text)';
+           return `<div class="journal-entry-card" onclick="this.classList.toggle('expanded')">
+             <div class="journal-entry-row">
+               <div style="flex:1;min-width:0">
+                 <div class="journal-entry-date">${label}</div>
+                 <div class="journal-entry-preview">${escHtml(preview)}${(entry.text||'').length>90?'…':''}</div>
+               </div>
+               ${entry.doodle ? `<img class="journal-entry-doodle" src="${entry.doodle}" alt="doodle">` : ''}
+             </div>
+             <div class="journal-entry-expanded">
+               ${entry.text ? `<div class="journal-entry-full-text">${escHtml(entry.text)}</div>` : ''}
+               ${entry.doodle ? `<img class="journal-entry-full-doodle" src="${entry.doodle}" alt="doodle">` : ''}
+               <button class="journal-btn" style="margin-top:8px" onclick="event.stopPropagation();openDoodleForDate('${date}')">🎨 Edit Doodle</button>
+             </div>
+           </div>`;
+         }).join('')}`
+      : `<div style="text-align:center;padding:30px;color:var(--text2);font-family:'Caveat',cursive;font-size:17px">Start writing to build your journal story 🌸</div>`
+    }
+  `;
+}
+
+function saveJournalEntry(date) {
+  const textarea = document.getElementById('journalTextarea');
+  if (!textarea) return;
+  if (!state.journal[date]) state.journal[date] = { text: '', doodle: '' };
+  state.journal[date].text = textarea.value;
+  if (!state.habits[todayStr()]) state.habits[todayStr()] = {};
+  state.habits[todayStr()]['journal'] = true;
+  saveState();
+  showToast('Journal entry saved!', '📓');
+  renderJournal();
+  renderRightPanel();
+}
+
+// ==================== DOODLE ====================
+function openDoodleForDate(date) {
+  doodleDate = date;
+  const label = new Date(date + 'T12:00:00').toLocaleDateString('en-US', {weekday:'long', month:'long', day:'numeric'});
+  document.getElementById('doodleTitleLabel').textContent = label;
+  document.getElementById('doodleOverlay').classList.add('open');
+  setTimeout(initDoodleCanvas, 60);
+}
+
+function initDoodleCanvas() {
+  doodleCanvasRef = document.getElementById('doodleCanvas');
+  doodleCtxRef = doodleCanvasRef.getContext('2d');
+  const wrap = document.querySelector('.doodle-canvas-wrap');
+  const w = Math.min(wrap.clientWidth - 40, 960);
+  const h = Math.min(wrap.clientHeight - 40, 620);
+  doodleCanvasRef.width = w;
+  doodleCanvasRef.height = h;
+  doodleCanvasRef.style.width = w + 'px';
+  doodleCanvasRef.style.height = h + 'px';
+
+  // Fill white
+  doodleCtxRef.fillStyle = 'white';
+  doodleCtxRef.fillRect(0, 0, w, h);
+
+  // Color swatches
+  const colors = ['#2A2A2A','#F57A3D','#83B8FF','#8BBE5A','#F7A7C0','#FFD84D','#9B59B6','#E74C3C','#1ABC9C','#FFFFFF'];
+  const sw = document.getElementById('colorSwatches');
+  sw.innerHTML = colors.map(c =>
+    `<div class="color-swatch${c===doodleColor?' active':''}" style="background:${c};${c==='#FFFFFF'?'border:1px solid #ccc':''}" data-color="${c}" onclick="setDoodleColor('${c}')"></div>`
+  ).join('');
+
+  doodleHistory = [];
+  doodleCanvasRef.onmousedown = e => { doodleIsDrawing = true; const p = getDoodlePos(e); doodleLastX=p.x; doodleLastY=p.y; doodleCtxRef.beginPath(); doodleCtxRef.arc(p.x,p.y,doodleBrushSize/2,0,Math.PI*2); doodleCtxRef.fillStyle = doodleTool==='eraser'?'white':doodleColor; doodleCtxRef.fill(); };
+  doodleCanvasRef.onmousemove = e => {
+    if (!doodleIsDrawing) return;
+    const p = getDoodlePos(e);
+    doodleCtxRef.beginPath();
+    doodleCtxRef.moveTo(doodleLastX, doodleLastY);
+    doodleCtxRef.lineTo(p.x, p.y);
+    doodleCtxRef.strokeStyle = doodleTool==='eraser'?'white':doodleColor;
+    doodleCtxRef.lineWidth = doodleBrushSize;
+    doodleCtxRef.lineCap = 'round'; doodleCtxRef.lineJoin = 'round';
+    doodleCtxRef.stroke();
+    doodleLastX=p.x; doodleLastY=p.y;
+  };
+  doodleCanvasRef.onmouseup = doodleCanvasRef.onmouseleave = () => { if(doodleIsDrawing){doodleIsDrawing=false;saveDoodleHistory();} };
+  doodleCanvasRef.ontouchstart = e => { e.preventDefault(); const t=e.touches[0]; doodleCanvasRef.onmousedown({clientX:t.clientX,clientY:t.clientY}); };
+  doodleCanvasRef.ontouchmove  = e => { e.preventDefault(); const t=e.touches[0]; doodleCanvasRef.onmousemove({clientX:t.clientX,clientY:t.clientY}); };
+  doodleCanvasRef.ontouchend   = () => doodleCanvasRef.onmouseup();
+
+  const entry = (state.journal||{})[doodleDate];
+  if (entry && entry.doodle) {
+    const img = new Image();
+    img.onload = () => { doodleCtxRef.drawImage(img,0,0,w,h); saveDoodleHistory(); };
+    img.src = entry.doodle;
+  } else {
+    saveDoodleHistory();
+  }
+  document.getElementById('brushSize').oninput = function(){ doodleBrushSize = parseInt(this.value); };
+}
+
+function getDoodlePos(e) {
+  const r = doodleCanvasRef.getBoundingClientRect();
+  return { x: (e.clientX-r.left)*(doodleCanvasRef.width/r.width), y: (e.clientY-r.top)*(doodleCanvasRef.height/r.height) };
+}
+
+function saveDoodleHistory() {
+  doodleHistory.push(doodleCtxRef.getImageData(0,0,doodleCanvasRef.width,doodleCanvasRef.height));
+  if (doodleHistory.length > 30) doodleHistory.shift();
+}
+
+function undoDoodle() {
+  if (doodleHistory.length > 1) { doodleHistory.pop(); doodleCtxRef.putImageData(doodleHistory[doodleHistory.length-1],0,0); }
+}
+
+function clearDoodle() {
+  doodleCtxRef.fillStyle='white'; doodleCtxRef.fillRect(0,0,doodleCanvasRef.width,doodleCanvasRef.height);
+  saveDoodleHistory();
+}
+
+function setDoodleTool(tool) {
+  doodleTool = tool;
+  document.getElementById('toolPencil').classList.toggle('active', tool==='pencil');
+  document.getElementById('toolEraser').classList.toggle('active', tool==='eraser');
+  doodleCanvasRef.style.cursor = tool==='eraser' ? 'cell' : 'crosshair';
+}
+
+function setDoodleColor(c) {
+  doodleColor = c; setDoodleTool('pencil');
+  document.querySelectorAll('.color-swatch').forEach(s => s.classList.toggle('active', s.dataset.color===c));
+}
+
+function saveDoodle() {
+  const dataUrl = doodleCanvasRef.toDataURL('image/png');
+  if (!state.journal) state.journal = {};
+  if (!state.journal[doodleDate]) state.journal[doodleDate] = { text: '', doodle: '' };
+  state.journal[doodleDate].doodle = dataUrl;
+  saveState();
+  showToast('Doodle saved!', '🎨');
+  closeDoodle();
+  if (currentView === 'journal') renderJournal();
+  if (currentView === 'calendar') renderCalendar();
+}
+
+function closeDoodle() {
+  document.getElementById('doodleOverlay').classList.remove('open');
+  doodleHistory = [];
+}
+
 function toggleTheme() {
   const isDark = document.documentElement.dataset.theme === 'dark';
   document.documentElement.dataset.theme = isDark ? 'light' : 'dark';
@@ -2212,6 +2520,7 @@ calMonth = nowD.getMonth();
 // Initial render
 renderAll();
 updateTimerDisplay();
+renderSessionDots();
 </script>
 </body>
 </html>
