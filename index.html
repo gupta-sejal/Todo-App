@@ -655,12 +655,19 @@ h1,h2,h3 { font-family: 'Playfair Display', serif; }
   border: 1px solid var(--border); cursor: pointer;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   font-size: 13px; font-weight: 500; transition: all 0.2s;
-  position: relative; gap: 2px;
+  position: relative; gap: 2px; overflow: hidden;
 }
 .cal-day:hover { background: var(--surface2); border-color: var(--yellow); }
-.cal-day.today { background: var(--yellow); color: #5A4000; border-color: var(--yellow); font-weight: 700; }
+.cal-day.today { background: transparent; color: #5A4000; border: 2.5px solid var(--yellow); font-weight: 700; }
+[data-theme="dark"] .cal-day.today { color: var(--yellow); }
 .cal-day.other-month { opacity: 0.3; }
 .cal-day.selected { border-color: var(--coral); border-width: 2px; }
+.cal-day.has-doodle { background: none !important; border-color: var(--border) !important; padding: 0; overflow: hidden; }
+.cal-day.has-doodle:hover { border-color: var(--yellow) !important; transform: scale(1.04); }
+.cal-day.has-doodle.today { border: 2.5px solid var(--yellow) !important; }
+.cal-doodle-fill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 7px; display: block; }
+.cal-doodle-num { position: relative; z-index: 1; font-size: 11px; background: rgba(255,255,255,0.78); border-radius: 3px; padding: 0 3px; line-height: 1.5; }
+[data-theme="dark"] .cal-doodle-num { background: rgba(0,0,0,0.5); color: #EDE5D8; }
 .cal-dots { display: flex; gap: 2px; }
 .cal-dot { width: 4px; height: 4px; border-radius: 50%; }
 .cal-dot.easy { background: var(--green); }
@@ -1782,25 +1789,34 @@ function renderCalendar() {
     const isToday = dateStr === todayFull;
     const isSel = calSelectedDay === dateStr;
     const entry = state.journal ? state.journal[dateStr] : null;
+    const hasDoodle = calFilter === 'doodle' && entry && entry.doodle;
     let indicator = '';
 
-    if (calFilter === 'tasks') {
-      const dayTasks = state.tasks.filter(t => t.due === dateStr);
-      const dots = dayTasks.slice(0,3).map(t => `<div class="cal-dot ${t.priority}"></div>`).join('');
-      indicator = dots ? `<div class="cal-dots">${dots}</div>` : '';
-    } else if (calFilter === 'mood') {
-      const moods = state.moods || {};
-      const m = moods[dateStr];
-      indicator = m ? `<div style="font-size:11px">${m}</div>` : '';
-    } else if (calFilter === 'journal') {
-      indicator = entry && entry.text ? `<div style="font-size:10px">📓</div>` : '';
-    } else if (calFilter === 'doodle') {
-      indicator = entry && entry.doodle ? `<img class="cal-doodle-thumb" src="${entry.doodle}" alt="">` : '';
+    if (!hasDoodle) {
+      if (calFilter === 'tasks') {
+        const dayTasks = state.tasks.filter(t => t.due === dateStr);
+        const dots = dayTasks.slice(0,3).map(t => `<div class="cal-dot ${t.priority}"></div>`).join('');
+        indicator = dots ? `<div class="cal-dots">${dots}</div>` : '';
+      } else if (calFilter === 'mood') {
+        const m = (state.moods || {})[dateStr];
+        indicator = m ? `<div style="font-size:12px">${m}</div>` : '';
+      } else if (calFilter === 'journal') {
+        indicator = entry && entry.text ? `<div style="font-size:11px">📓</div>` : '';
+      } else if (calFilter === 'doodle') {
+        indicator = `<div style="font-size:11px;opacity:0.3">＋</div>`;
+      }
     }
 
-    html += `<div class="cal-day${isToday?' today':''}${isSel?' selected':''}" onclick="calSelectDay('${dateStr}')">
-      ${d}${indicator}
-    </div>`;
+    if (hasDoodle) {
+      html += `<div class="cal-day${isToday?' today':''} has-doodle" onclick="calSelectDay('${dateStr}')" style="position:relative">
+        <img class="cal-doodle-fill" src="${entry.doodle}" alt="">
+        <span class="cal-doodle-num${isToday?' today':''}">${d}</span>
+      </div>`;
+    } else {
+      html += `<div class="cal-day${isToday?' today':''}${isSel?' selected':''}" onclick="calSelectDay('${dateStr}')">
+        ${d}${indicator}
+      </div>`;
+    }
   }
 
   const cells = firstDay + daysInMonth;
